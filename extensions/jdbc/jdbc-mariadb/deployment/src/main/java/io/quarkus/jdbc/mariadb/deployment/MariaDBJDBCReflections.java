@@ -3,6 +3,7 @@ package io.quarkus.jdbc.mariadb.deployment;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
+import io.quarkus.deployment.builditem.nativeimage.RuntimeInitializedClassBuildItem;
 
 public final class MariaDBJDBCReflections {
 
@@ -16,5 +17,11 @@ public final class MariaDBJDBCReflections {
 
         //MariaDB's connection process requires reflective read to all fields of Options:
         reflectiveClass.produce(new ReflectiveClassBuildItem(true, true, "org.mariadb.jdbc.internal.util.Options"));
+    }
+
+    @BuildStep
+    void runtimeInit(BuildProducer<RuntimeInitializedClassBuildItem> runtimeInitialized) {
+        runtimeInitialized
+                .produce(new RuntimeInitializedClassBuildItem("org.mariadb.jdbc.internal.failover.impl.MastersSlavesListener"));
     }
 }
