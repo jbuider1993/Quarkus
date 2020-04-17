@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import io.quarkus.smallrye.reactivemessaging.amqp.AnonymousAmqpBroker;
+import io.quarkus.smallrye.reactivemessaging.amqp.ConsumingBean;
+import io.quarkus.smallrye.reactivemessaging.amqp.ProducingBean;
 import io.quarkus.smallrye.reactivemessaging.amqp.TestResource;
 import io.quarkus.test.QuarkusDevModeTest;
 import io.restassured.RestAssured;
